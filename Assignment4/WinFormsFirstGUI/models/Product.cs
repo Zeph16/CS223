@@ -8,6 +8,7 @@ namespace WinFormsFirstGUI.models
 {
     internal class Prod
     {
+        private static List<Prod> p = new List<Prod>();
         public int Number { get; set; }
         public string Name { get; set; }
         public int InvNum { get; set; }
@@ -15,7 +16,7 @@ namespace WinFormsFirstGUI.models
         public double Price { get; set; }
         public string Date { get; set; }
 
-        public void save()
+        public void Save()
         {
             MessageBox.Show("Product Number: " + Number + "\n" +
                             "Product Inventory Number: " + InvNum + "\n" +
@@ -25,6 +26,11 @@ namespace WinFormsFirstGUI.models
                             "Date: " + Date + "\n\n" +
                             "\tProduct Added!"
                             );
+            p.Add(this);
+        }
+        static public List<Prod> GetProducts()
+        {
+            return p;
         }
 
     }
