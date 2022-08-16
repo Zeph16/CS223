@@ -31,7 +31,7 @@ namespace WinFormsFirstGUI
             if (searchString == "")
                 return;
 
-            Regex r = new Regex(@"^" + searchString);
+            Regex r = new Regex(@"^(?i)" + searchString);
             dgv.DataSource = null;
             dgv.DataSource = models.Prod.GetProducts().FindAll(match => r.IsMatch(match.Name));
             if (searchString.Length > 5)
