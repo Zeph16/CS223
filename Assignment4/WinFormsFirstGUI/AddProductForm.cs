@@ -12,11 +12,13 @@ using System.Text.RegularExpressions;
 
 namespace WinFormsFirstGUI
 {
-    public partial class Form : System.Windows.Forms.Form
+    public partial class AddProductForm : System.Windows.Forms.Form
     {
-        public Form()
+        public string user { get; set; }
+        public AddProductForm(string name)
         {
             InitializeComponent();
+            user = name;
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -43,6 +45,14 @@ namespace WinFormsFirstGUI
                     err.SetError(txt_objname, "Name should not include numbers");
                 return;
             }
+            if (chk_ship.Checked)
+            {
+                if (!rb_plane.Checked && !rb_ship.Checked && !rb_truck.Checked)
+                {
+                    err.SetError(lbl_ship, "Choose a shipping method");
+                    return;
+                }
+            }
 
             Prod p = new Prod();
             try
@@ -53,6 +63,10 @@ namespace WinFormsFirstGUI
                 p.Count = int.Parse(txt_count.Text);
                 p.Price = Double.Parse(txt_price.Text);
                 p.Date = dt_date.Text;
+                p.shipping = chk_ship.Checked;
+                p.ship = rb_ship.Checked;
+                p.plane = rb_plane.Checked;
+                p.truck = rb_truck.Checked;
             }
             catch
             {
@@ -62,8 +76,8 @@ namespace WinFormsFirstGUI
             }
 
             p.Save();
-            dgv.DataSource = null;
-            dgv.DataSource = Prod.GetProducts();
+            //dgv.DataSource = null;
+            //dgv.DataSource = Prod.GetProducts();
 
         }
 
@@ -79,6 +93,30 @@ namespace WinFormsFirstGUI
             txt_invnum.Text = "";
             txt_count.Text = "";
             txt_price.Text = "";
+            chk_ship.Checked = false;
+            rb_plane.Checked = false;
+            rb_ship.Checked = false;
+            rb_truck.Checked = false;
+            dt_date.Value = DateTime.Today;
+        }
+
+        private void chk_ship_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_ship.Checked) {
+                rb_plane.Enabled = true;
+                rb_ship.Enabled = true;
+                rb_truck.Enabled = true;
+            } else
+            {
+                rb_plane.Enabled = false;
+                rb_ship.Enabled = false;
+                rb_truck.Enabled = false;
+            }
+        }
+
+        private void AddProductForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -15,6 +15,10 @@ namespace WinFormsFirstGUI.models
         public int Count { get; set; }
         public double Price { get; set; }
         public string Date { get; set; }
+        public bool shipping { get; set; }
+        public bool ship { get; set; }
+        public bool plane { get; set; }
+        public bool truck { get; set; }
 
         public void Save()
         {
@@ -31,6 +35,10 @@ namespace WinFormsFirstGUI.models
         static public List<Prod> GetProducts()
         {
             return p;
+        }
+        public static List<Prod> lookFor(string name)
+        {
+            return p.FindAll(match => match.Name == name);
         }
 
     }
