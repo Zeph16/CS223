@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WinFormsFirstGUI.models
 {
-    internal class Prod
+    public class Prod
     {
         private static List<Prod> p = new List<Prod>() {
             new Prod() {
@@ -29,6 +29,7 @@ namespace WinFormsFirstGUI.models
                 Date = DateTime.Today.ToString(), shipping = false, ship = false, plane = false, truck = false
             }
         };
+
         public int Number { get; set; }
         public string Name { get; set; }
         public int InvNum { get; set; }
@@ -40,21 +41,44 @@ namespace WinFormsFirstGUI.models
         public bool plane { get; set; }
         public bool truck { get; set; }
 
-        public void Save()
+        public static void Initialize()
         {
+            foreach (var p_item in p)
+            {
+                DB.Insert(p_item);
+            }
+            
+        }
+        public bool Save(bool add)
+        {
+            if (add)
+            {
+                if (!DB.Insert(this))
+                    return false;
+                MessageBox.Show("Product Number: " + Number + "\n" +
+                                "Product Inventory Number: " + InvNum + "\n" +
+                                "Product Name: " + Name + "\n" +
+                                "Product Count: " + Count + "\n" +
+                                "Product Price: " + Price + "\n" +
+                                "Date: " + Date + "\n\n" +
+                                "\tProduct Added!"
+                                );
+                return true;
+            }
             MessageBox.Show("Product Number: " + Number + "\n" +
-                            "Product Inventory Number: " + InvNum + "\n" +
-                            "Product Name: " + Name + "\n" +
-                            "Product Count: " + Count + "\n" +
-                            "Product Price: " + Price + "\n" +
-                            "Date: " + Date + "\n\n" +
-                            "\tProduct Added!"
-                            );
-            p.Add(this);
+                                "Product Inventory Number: " + InvNum + "\n" +
+                                "Product Name: " + Name + "\n" +
+                                "Product Count: " + Count + "\n" +
+                                "Product Price: " + Price + "\n" +
+                                "Date: " + Date + "\n\n" +
+                                "\tProduct Updated!"
+                                );
+            DB.Update(this);
+            return true;
         }
         static public List<Prod> GetProducts()
         {
-            return p;
+            return DB.Retrieve();
         }
         public static List<Prod> lookFor(string name)
         {
@@ -63,3 +87,4 @@ namespace WinFormsFirstGUI.models
 
     }
 }
+

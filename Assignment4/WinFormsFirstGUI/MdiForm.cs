@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormsFirstGUI.models;
 
 namespace WinFormsFirstGUI
 {
@@ -16,6 +17,7 @@ namespace WinFormsFirstGUI
         public MdiForm(string name)
         {
             InitializeComponent();
+            DB.Initialize();
             user = name;
             this.Text = "Product Management - " + user;
             HelpForm helpForm = new();
@@ -30,7 +32,7 @@ namespace WinFormsFirstGUI
             {
                 ActiveMdiChild.Close();
             }
-            AddProductForm addProductForm = new(user);
+            AddProductForm addProductForm = new(null, true, this);
             addProductForm.MdiParent = this;
             addProductForm.Dock = DockStyle.Fill;
             addProductForm.Show();
@@ -42,7 +44,7 @@ namespace WinFormsFirstGUI
             {
                 f.Close();
             }
-            ViewProductForm viewProductForm = new();
+            ViewProductForm viewProductForm = new(this);
             viewProductForm.MdiParent = this;
             viewProductForm.Dock = DockStyle.Fill;
             viewProductForm.Show();
@@ -54,7 +56,7 @@ namespace WinFormsFirstGUI
             {
                 f.Close();
             }
-            this.Close();
+            Application.Exit();
         }
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -67,6 +69,34 @@ namespace WinFormsFirstGUI
             helpForm.MdiParent = this;
             helpForm.Dock = DockStyle.Fill;
             helpForm.Show();
+        }
+
+        public void ShowDetails(Prod obj)
+        {
+            DetailsForm details = new DetailsForm(obj, this);
+            details.MdiParent = this;
+            details.Dock = DockStyle.Fill;
+            details.Show();
+        }
+        
+        public void EditProduct(Prod obj)
+        {
+            AddProductForm addProductForm = new(obj, false, this);
+            addProductForm.MdiParent = this;
+            addProductForm.Dock = DockStyle.Fill;
+            addProductForm.Show();
+        }
+
+        public void RefreshView()
+        {
+            foreach (var f in MdiChildren)
+            {
+                f.Close();
+            }
+            ViewProductForm viewProductForm = new(this);
+            viewProductForm.MdiParent = this;
+            viewProductForm.Dock = DockStyle.Fill;
+            viewProductForm.Show();
         }
     }
 }

@@ -14,11 +14,42 @@ namespace WinFormsFirstGUI
 {
     public partial class AddProductForm : System.Windows.Forms.Form
     {
-        public string user { get; set; }
-        public AddProductForm(string name)
+        public bool add { get; set; }
+        public Prod obj { get; set; }
+        public MdiForm parent { get; set; }
+        public AddProductForm(Prod obj, bool add, MdiForm parent)
         {
             InitializeComponent();
-            user = name;
+            this.obj = obj;
+            this.add = add;
+            this.parent = parent;
+            if (!add)
+            {
+                btn_add.Text = "Update";
+                btn_clear.Text = "Cancel";
+                txt_count.Text = obj.Count.ToString();
+                txt_num.Text = obj.Number.ToString();
+                txt_objname.Text = obj.Name.ToString();
+                txt_invnum.Text = obj.InvNum.ToString();
+                txt_price.Text = obj.Price.ToString();
+                if (obj.shipping)
+                {
+                    chk_ship.Checked = true;
+                    rb_plane.Enabled = true;
+                    rb_ship.Enabled = true;
+                    rb_truck.Enabled = true;
+                    if (obj.ship)
+                        rb_ship.Checked = true;
+                    else if (obj.truck)
+                        rb_truck.Checked = true;
+                    else if (obj.plane)
+                        rb_plane.Checked = true;
+                }
+
+                txt_num.Enabled = false;
+                txt_invnum.Enabled = false;
+            }
+
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -75,9 +106,28 @@ namespace WinFormsFirstGUI
                 return;
             }
 
-            p.Save();
-            //dgv.DataSource = null;
-            //dgv.DataSource = Prod.GetProducts();
+            if (!p.Save(add))
+            {
+                MessageBox.Show("Product Number or Inventory Number already exists, could not insert.");
+                return;
+            }
+            if (!add)
+                parent.RefreshView();
+            else
+            {
+                int n = int.Parse(txt_num.Text);
+                txt_num.Text = (n + 1).ToString();
+                txt_objname.Text = "";
+                n = int.Parse(txt_invnum.Text);
+                txt_invnum.Text = (n + 1).ToString();
+                txt_count.Text = "";
+                txt_price.Text = "";
+                chk_ship.Checked = false;
+                rb_plane.Checked = false;
+                rb_ship.Checked = false;
+                rb_truck.Checked = false;
+            }
+
 
         }
 
@@ -88,16 +138,21 @@ namespace WinFormsFirstGUI
 
         private void btn_clear_Click(object sender, EventArgs e)
         {
-            txt_num.Text = "";
-            txt_objname.Text = "";
-            txt_invnum.Text = "";
-            txt_count.Text = "";
-            txt_price.Text = "";
-            chk_ship.Checked = false;
-            rb_plane.Checked = false;
-            rb_ship.Checked = false;
-            rb_truck.Checked = false;
-            dt_date.Value = DateTime.Today;
+            if (add)
+            {
+                txt_num.Text = "";
+                txt_objname.Text = "";
+                txt_invnum.Text = "";
+                txt_count.Text = "";
+                txt_price.Text = "";
+                chk_ship.Checked = false;
+                rb_plane.Checked = false;
+                rb_ship.Checked = false;
+                rb_truck.Checked = false;
+                dt_date.Value = DateTime.Today;
+                return;
+            }
+            this.Close();
         }
 
         private void chk_ship_CheckedChanged(object sender, EventArgs e)
@@ -106,8 +161,11 @@ namespace WinFormsFirstGUI
                 rb_plane.Enabled = true;
                 rb_ship.Enabled = true;
                 rb_truck.Enabled = true;
-            } else
-            {
+            } else {
+                rb_plane.Checked = false;
+                rb_ship.Checked = false;
+                rb_truck.Checked = false;
+
                 rb_plane.Enabled = false;
                 rb_ship.Enabled = false;
                 rb_truck.Enabled = false;
@@ -117,6 +175,11 @@ namespace WinFormsFirstGUI
         private void AddProductForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_connect_Click(object sender, EventArgs e)
+        {
+            DB.Test();
         }
     }
 }

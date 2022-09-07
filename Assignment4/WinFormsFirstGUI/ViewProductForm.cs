@@ -8,21 +8,41 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using WinFormsFirstGUI.models;
 
 namespace WinFormsFirstGUI
 {
     public partial class ViewProductForm : Form
     {
-        public ViewProductForm()
+        public MdiForm parent { get; set; }
+        public ViewProductForm(MdiForm parent)
         {
             InitializeComponent();
-            dgv.DataSource = null;
-            dgv.DataSource = models.Prod.GetProducts();
+            this.parent = parent;
+            List<Prod> plist = Prod.GetProducts();
+            foreach (var p in plist)
+            {
+                ProductCard pcard = new ProductCard(parent);
+                pcard.name = p.Name;
+                pcard.price = p.Price.ToString();
+                pcard.obj = p;
+                panel.Controls.Add(pcard);
+            }
         }
 
-        private void ViewProductForm_Load(object sender, EventArgs e)
+        public void Repopulate(List<Prod> plist = null)
         {
-
+            if (plist == null)
+                plist = DB.Retrieve();
+            panel.Controls.Clear();
+            foreach (var p in plist)
+            {
+                ProductCard pcard = new ProductCard(parent);
+                pcard.name = p.Name;
+                pcard.price = p.Price.ToString();
+                pcard.obj = p;
+                panel.Controls.Add(pcard);
+            }
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -32,24 +52,26 @@ namespace WinFormsFirstGUI
                 return;
 
             Regex r = new Regex(@"^(?i)" + searchString);
-            dgv.DataSource = null;
-            dgv.DataSource = models.Prod.GetProducts().FindAll(match => r.IsMatch(match.Name));
-            if (searchString.Length > 5)
+            List<Prod> p_list = models.Prod.GetProducts().FindAll(match => r.IsMatch(match.Name));
+            Repopulate(p_list);
+            if (p_list.Count == 0)
+                lbl_search.Text = "No results found.";
+            else if (searchString.Length > 5)
                 lbl_search.Text = "Search results for " + txt_search.Text.Substring(0, 5) + "...:";
             else
                 lbl_search.Text = "Search results for " + txt_search.Text + ":";
 
-            btn_showall.Enabled = true;
+            btn_showall.Visible = true;
         }
 
         private void btn_showall_Click(object sender, EventArgs e)
         {
-            dgv.DataSource = null;
-            dgv.DataSource = models.Prod.GetProducts();
+            Repopulate();
 
             lbl_search.Text = "";
-            btn_showall.Enabled = false;
+            btn_showall.Visible = false;
             txt_search.Text = "";
+            
         }
     }
 }
