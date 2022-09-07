@@ -16,3 +16,5 @@
 - Multiple Forms
 - MDI Forms
 
+## < README outdated, expect an update by Thursday >
+
