@@ -154,7 +154,7 @@
             this.lbl_status.TabIndex = 8;
             this.lbl_status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Form1
+            // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -169,9 +169,9 @@
             this.Controls.Add(this.btn_mssql);
             this.Controls.Add(this.btn_mysql);
             this.Controls.Add(this.btn_ram);
-            this.Name = "Form1";
+            this.Name = "MainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Select Storage";
             this.ResumeLayout(false);
             this.PerformLayout();
 
