@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>Product_Management</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProdMgmtMSSQL\ProdMgmtMSSQL.csproj" />
+    <ProjectReference Include="..\ProdMgmtMYSQL\ProdMgmtMySQL.csproj" />
+    <ProjectReference Include="..\ProdMgmtRAM\ProdMgmtRAM.csproj" />
+  </ItemGroup>
+
+</Project>
