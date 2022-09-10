@@ -230,7 +230,7 @@
             // lbl_date
             // 
             this.lbl_date.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lbl_date.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbl_date.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_date.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(254)))), ((int)(((byte)(249)))));
             this.lbl_date.Location = new System.Drawing.Point(569, 159);
             this.lbl_date.Name = "lbl_date";
