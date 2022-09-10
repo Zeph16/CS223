@@ -29,27 +29,27 @@
 
 
 ### Windows Forms Controls Used
-	- Label
-	- Button
-	- Textbox
-	- Date and Time Picker
-	- Error provider
-	- Checkbox
-	- Radio box
-	- MenuStrip
-	- Panel
-	- FlowLayoutPanel
-	- Table LayoutPanel
+- `Label`
+- `Button`
+- `Textbox`
+- `Date and Time Picker`
+- `Error provider`
+- `Checkbox`
+- `Radio box`
+- `MenuStrip`
+- `Panel`
+- `FlowLayoutPanel`
+- `Table LayoutPanel`
 - Also utilizes a User Control in the form of a Product Card.
 
 ## Screenshots
-- ![Imgur Image](https://i.imgur.com/jRgMmq3)
-- ![Imgur Image](https://i.imgur.com/jRgMmq3)
-- ![Imgur Image](https://i.imgur.com/VCIpG5d)
-- ![Imgur Image](https://i.imgur.com/EgfUEDZ)
-- ![Imgur Image](https://i.imgur.com/CiXbC7H)
-- ![Imgur Image](https://i.imgur.com/Ua81zwa)
-- Different color schemes for different storage methods (MySQL and RAM respectively) ![Imgur Image](https://i.imgur.com/UML70bu)
+- <img src="https://i.imgur.com/jRgMmq3"/>
+- <img src="https://i.imgur.com/jRgMmq3"/>
+- <img src="https://i.imgur.com/VCIpG5d"/>
+- <img src="https://i.imgur.com/EgfUEDZ"/>
+- <img src="https://i.imgur.com/CiXbC7H"/>
+- <img src="https://i.imgur.com/Ua81zwa"/>
+- Different color schemes for different storage methods (MySQL and RAM respectively) <img src="https://i.imgur.com/UML70bu"/>
 
 
 
