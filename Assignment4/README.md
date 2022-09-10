@@ -21,10 +21,10 @@
 - Creates a database and a table so the user isn't required to take any database backend actions
 - Exception handling wherever possible for a better UX
 - Includes 4 projects under one solution, namely:
-		- A Main Menu Project
-		- MSSQL Storage
-		- With MySQL Storage
-		- With RAM Storage
+	- The Main Menu
+	- MSSQL Storage
+	- With MySQL Storage
+	- With RAM Storage
 	- All Projects can be run separately from their own solution files if needed.
 
 
@@ -43,15 +43,15 @@
 - Also utilizes a User Control in the form of a Product Card.
 
 ## Screenshots
-- <img src="https://i.imgur.com/hKxsiQE.png"/>
-- <img src="https://i.imgur.com/jRgMmq3.png"/>
-- <img src="https://i.imgur.com/jRgMmq3.png"/>
-- <img src="https://i.imgur.com/VCIpG5d.png"/>
-- <img src="https://i.imgur.com/EgfUEDZ.png"/>
-- <img src="https://i.imgur.com/CiXbC7H.png"/>
+- <img src="https://i.imgur.com/BhzcpIB.png"/>
+- <img src="https://i.imgur.com/Ptl5mpo.png"/>
+- <img src="https://i.imgur.com/1WpWZa3.png"/>
+- <img src="https://i.imgur.com/IbHNe70.png"/>
+- <img src="https://i.imgur.com/reVac0a.png"/>
+- <img src="https://i.imgur.com/u1Lcupv.png"/>
 - <img src="https://i.imgur.com/Ua81zwa.png"/>
 - Different color schemes for different storage methods (MySQL and RAM respectively) 
-	- <img src="https://i.imgur.com/UML70bu.png"/>
+	- <img src="https://i.imgur.com/sGV1gqN.png"/>
 
 
 
