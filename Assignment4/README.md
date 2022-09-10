@@ -43,14 +43,14 @@
 - Also utilizes a User Control in the form of a Product Card.
 
 ## Screenshots
-- <img src="https://i.imgur.com/BhzcpIB.png"/>
-- <img src="https://i.imgur.com/Ptl5mpo.png"/>
-- <img src="https://i.imgur.com/1WpWZa3.png"/>
-- <img src="https://i.imgur.com/IbHNe70.png"/>
-- <img src="https://i.imgur.com/reVac0a.png"/>
-- <img src="https://i.imgur.com/u1Lcupv.png"/>
-- <img src="https://i.imgur.com/Ua81zwa.png"/>
-- Different color schemes for different storage methods (MySQL and RAM respectively) 
+<img src="https://i.imgur.com/BhzcpIB.png"/>
+<img src="https://i.imgur.com/Ptl5mpo.png"/>
+<img src="https://i.imgur.com/1WpWZa3.png"/>
+<img src="https://i.imgur.com/IbHNe70.png"/>
+<img src="https://i.imgur.com/reVac0a.png"/>
+<img src="https://i.imgur.com/u1Lcupv.png"/>
+<img src="https://i.imgur.com/VyO4fxe.png"/>
+Different color schemes for different storage methods (MySQL and RAM respectively) 
 	- <img src="https://i.imgur.com/sGV1gqN.png"/>
 
 
